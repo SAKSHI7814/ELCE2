@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Menu - Block, Inline, Inline-block, Float & Clear</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* BLOCK EXAMPLE */
+        .block-title {
+            display: block;
+            background: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        /* INLINE ELEMENTS */
+        .inline-menu span {
+            display: inline;
+            padding: 10px;
+            background: lightblue;
+            margin-right: 10px;
+        }
+
+        /* INLINE-BLOCK NAVIGATION */
+        .nav {
+            background: #222;
+            padding: 10px;
+        }
+
+        .nav li {
+            display: inline-block;
+            background: #444;
+            padding: 10px 20px;
+            margin: 5px;
+            color: white;
+            border-radius: 5px;
+        }
+
+        /* FLOAT MENU */
+        .float-box {
+            margin-top: 20px;
+            width: 100%;
+            background: #ddd;
+            padding: 10px;
+        }
+
+        .left-menu {
+            float: left;
+            width: 30%;
+            background: #f4a261;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .right-content {
+            float: left;
+            width: 70%;
+            background: #e9c46a;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        /* CLEAR */
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="block-title">Navigation Menu Examples</div>
+
+    <h2>1. Inline Menu</h2>
+    <div class="inline-menu">
+        <span>Home</span>
+        <span>About</span>
+        <span>Contact</span>
+    </div>
+
+    <h2>2. Inline-Block Navigation Bar</h2>
+    <ul class="nav">
+        <li>Home</li>
+        <li>Services</li>
+        <li>Portfolio</li>
+        <li>Contact</li>
+    </ul>
+
+    <h2>3. Float + Clear Example</h2>
+    <div class="float-box">
+        <div class="left-menu">This is left-side menu (float left)</div>
+        <div class="right-content">This is main content area (float left)</div>
+        <div class="clear"></div>
+    </div>
+
+</body>
+</html>
