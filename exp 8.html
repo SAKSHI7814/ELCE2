@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Profile Card — Flexbox Examples</title>
+  <style>
+    /* Page basics */
+    :root{
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --accent: #6366f1;
+      --radius: 12px;
+      --shadow: 0 6px 18px rgba(50,50,93,0.08);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#0f172a;padding:32px}
+    h1{font-size:20px;margin:0 0 20px}
+    .wrap{max-width:1100px;margin:0 auto}
+
+    /* Controls */
+    .controls{display:flex;gap:8px;margin-bottom:18px;align-items:center}
+    .controls button{padding:8px 12px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);background:white;cursor:pointer}
+
+    /* Grid of examples */
+    .examples{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+
+    /* Card container that becomes a flexbox playground */
+    .card-playground{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px;
+      display:flex; /* the important part - this is the flex container */
+      gap:16px; /* spacing between direct children */
+      align-items:center; /* defaults to center */
+      justify-content:flex-start; /* defaults to start */
+      flex-direction:row; /* default layout */
+    }
+
+    /* Avatar */
+    .avatar{
+      width:86px;height:86px;border-radius:12px;flex:0 0 86px;overflow:hidden;background:linear-gradient(135deg,#eef2ff,#fff);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Info area grows to fill remaining space */
+    .info{display:flex;flex-direction:column;gap:6px;flex:1}
+
+    .name{font-size:16px;font-weight:600}
+    .meta{font-size:13px;color:var(--muted)}
+
+    /* Badge row and stats */
+    .badges{display:flex;gap:8px;flex-wrap:wrap}
+    .badge{background:#eef2ff;color:var(--accent);padding:6px 8px;border-radius:999px;font-size:12px}
+
+    /* Footer area */
+    .card-footer{display:flex;gap:12px;align-items:center}
+    .btn{padding:8px 10px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);background:white;cursor:pointer}
+
+    /* Small helper text to show current flex props */
+    .props{font-size:12px;color:var(--muted);margin-top:10px}
+
+    /* A vertical variant that demonstrates flex-direction:column */
+    .vertical .avatar{width:120px;height:120px;flex:0 0 auto;margin:0 auto}
+    .vertical .card-playground{flex-direction:column;align-items:center;text-align:center}
+
+    /* A spaced variant using justify-content:space-between */
+    .spaced .card-playground{justify-content:space-between}
+
+    /* Responsive tweak */
+    @media (max-width:520px){
+      .card-playground{flex-direction:column;align-items:center;text-align:center}
+      .avatar{width:110px;height:110px}
+    }
+
+    /* Small utility to show code-like labels */
+    pre.snippet{background:#0b1220;color:#dbeafe;padding:10px;border-radius:6px;font-size:12px;overflow:auto}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Student Profile Card — Flexbox playground</h1>
+    <p style="margin:0 0 14px;color:var(--muted)">Interactive examples demonstrating <code>display:flex</code>, <code>justify-content</code>, <code>align-items</code> and <code>flex-direction</code>.</p>
+
+    <div class="controls">
+      <!-- These buttons change the playground flex properties (JS toggles classes) -->
+      <label style="font-size:13px;color:var(--muted)">Layout:</label>
+      <button id="dir-row">flex-direction: row</button>
+      <button id="dir-col">flex-direction: column</button>
+      <button id="jc-start">justify-content: flex-start</button>
+      <button id="jc-between">justify-content: space-between</button>
+      <button id="ai-center">align-items: center</button>
+      <button id="ai-start">align-items: flex-start</button>
+    </div>
+
+    <div class="examples">
+      <!-- Example 1: Default horizontal card -->
+      <section>
+        <div class="card-playground" id="playground">
+          <div class="avatar">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop&s=placeholder" alt="avatar">
+          </div>
+          <div class="info">
+            <div class="name">Sakshi Tripathi</div>
+            <div class="meta">B.Tech 1st Year — ABES Engineering College</div>
+            <div class="badges">
+              <div class="badge">Computer Science</div>
+              <div class="badge">CGPA: 9.1</div>
+              <div class="badge">Green Olympiad</div>
+            </div>
+            <div class="card-footer" style="margin-top:8px">
+              <button class="btn">View Profile</button>
+              <button class="btn">Message</button>
+            </div>
+            <div class="props">display:flex; flex-direction: row; align-items: center; justify-content: flex-start;</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Example 2: Vertical card variant (column direction) -->
+      <section>
+        <div class="card-playground vertical">
+          <div class="avatar">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop&s=placeholder" alt="avatar">
+          </div>
+          <div class="info">
+            <div class="name">Arjun Verma</div>
+            <div class="meta">Class 9 — JKG International School</div>
+            <div class="badges">
+              <div class="badge">Maths</div>
+              <div class="badge">Science</div>
+            </div>
+            <div class="card-footer">
+              <button class="btn">View</button>
+              <button class="btn">Contact</button>
+            </div>
+            <div class="props">display:flex; flex-direction: column; align-items: center;</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Example 3: Spaced layout demonstrating justify-content: space-between -->
+      <section>
+        <div class="card-playground spaced">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="avatar" style="width:72px;height:72px;flex:0 0 72px">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop&s=placeholder" alt="avatar">
+            </div>
+            <div class="info" style="flex:unset">
+              <div class="name">Riya Sharma</div>
+              <div class="meta">Class 12 — Science Stream</div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+            <div class="meta">Attendance: 96%</div>
+            <div class="badge">Topper</div>
+            <div><button class="btn">Profile</button></div>
+          </div>
+        </div>
+        <div style="margin-top:6px" class="props">display:flex; justify-content: space-between; align-items: center;</div>
+      </section>
+
+    </div>
+
+    <h2 style="margin-top:26px;font-size:16px">Quick reference</h2>
+    <pre class="snippet">/* key flexbox properties used above */
+.container { display: flex; /* makes children layout with flexbox */ }
+.container { flex-direction: row | column; /* main axis: row (default) or column */ }
+.container { justify-content: flex-start | center | space-between | space-around; /* alignment along main axis */ }
+.container { align-items: flex-start | center | stretch; /* alignment along cross axis */ }
+</pre>
+
+    <p style="color:var(--muted);font-size:13px">Tip: Use <code>flex: 1</code> on the element you want to grow and fill available space. Use media queries to switch <code>flex-direction</code> on small screens.</p>
+
+    <script>
+      // Simple interactive buttons to toggle playground's flex properties
+      const playground = document.getElementById('playground');
+      document.getElementById('dir-row').addEventListener('click', ()=>{
+        playground.style.flexDirection = 'row';
+        playground.style.alignItems = 'center';
+        playground.querySelector('.props').textContent = 'display:flex; flex-direction: row; align-items: center; justify-content: '+(playground.style.justifyContent||'flex-start')+';';
+      });
+      document.getElementById('dir-col').addEventListener('click', ()=>{
+        playground.style.flexDirection = 'column';
+        playground.style.alignItems = 'center';
+        playground.querySelector('.props').textContent = 'display:flex; flex-direction: column; align-items: center; justify-content: '+(playground.style.justifyContent||'flex-start')+';';
+      });
+      document.getElementById('jc-start').addEventListener('click', ()=>{
+        playground.style.justifyContent = 'flex-start';
+        playground.querySelector('.props').textContent = 'display:flex; flex-direction: '+(playground.style.flexDirection||'row')+'; align-items: '+(playground.style.alignItems||'center')+'; justify-content: flex-start;';
+      });
+      document.getElementById('jc-between').addEventListener('click', ()=>{
+        playground.style.justifyContent = 'space-between';
+        playground.querySelector('.props').textContent = 'display:flex; flex-direction: '+(playground.style.flexDirection||'row')+'; align-items: '+(playground.style.alignItems||'center')+'; justify-content: space-between;';
+      });
+      document.getElementById('ai-center').addEventListener('click', ()=>{
+        playground.style.alignItems = 'center';
+        playground.querySelector('.props').textContent = 'display:flex; flex-direction: '+(playground.style.flexDirection||'row')+'; align-items: center; justify-content: '+(playground.style.justifyContent||'flex-start')+';';
+      });
+      document.getElementById('ai-start').addEventListener('click', ()=>{
+        playground.style.alignItems = 'flex-start';
+        playground.querySelector('.props').textContent = 'display:flex; flex-direction: '+(playground.style.flexDirection||'row')+'; align-items: flex-start; justify-content: '+(playground.style.justifyContent||'flex-start')+';';
+      });
+    </script>
+  </div>
+</body>
+</html>
